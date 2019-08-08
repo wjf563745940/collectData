@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>collect data</title>
+    <script src="first-input-delay.min.js"></script>
+    <script src="tti-polyfill.js"></script>
+    <script src="collectDatas.js"></script>
+    <script>
+        cdsetConfig({
+            url:'http://10.10.38.197:9025/r/collect',
+            TRACKING_ID:'UA-130512519-1',
+            srcUrl:'/analytics.js',
+            rumLongTask:true,
+            rumClick:false,
+            rumError:true
+        });
+    </script>
+    <style>
+        .fmp{
+            background: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button id="clickLongButton" type="">触发长任务</button>
+        <div class="fmp">
+            First meaningful paint
+        </div>
+        <footer>
+            <input type="text" placeholder="请输入你的内容">
+        </footer>
+    </div>
+    <script>
+        function sleep(d) {
+            for (var t = Date.now(); Date.now() - t <= d;);
+        }
+        function timelong(n) {
+            var t = 0;
+            for (var i = 0; i < n; i++) {
+                sleep(1000)
+                t++;
+            }
+        }
+        document.getElementById('clickLongButton').onclick = function () {
+            timelong(1);
+        }
+        document.getElementById('clickErrorButton').onclick = function () {
+            fun();
+        }
+        function fun() {
+            test();
+        }
+
+    </script>
+</body>
+
+</html>
